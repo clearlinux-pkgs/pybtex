@@ -4,7 +4,7 @@
 #
 Name     : pybtex
 Version  : 0.22.0
-Release  : 1
+Release  : 2
 URL      : https://files.pythonhosted.org/packages/e4/65/e4a9a368783e61e29645c7faff066e451dcdf5dbb8e80f258d6a9c474e24/pybtex-0.22.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/e4/65/e4a9a368783e61e29645c7faff066e451dcdf5dbb8e80f258d6a9c474e24/pybtex-0.22.0.tar.gz
 Summary  : A BibTeX-compatible bibliography processor in Python
@@ -76,7 +76,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1545682255
+export SOURCE_DATE_EPOCH=1545835589
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
@@ -107,4 +107,6 @@ echo ----[ mark ]----
 
 %files python3
 %defattr(-,root,root,-)
+%exclude /usr/lib/python3.7/site-packages/tests/__pycache__/utils.cpython-37.pyc
+%exclude /usr/lib/python3.7/site-packages/tests/utils.py
 /usr/lib/python3*/*
