@@ -1,5 +1,5 @@
 PKG_NAME := pybtex
-URL = https://files.pythonhosted.org/packages/79/64/e1cc7b749fb7491fb0feed901e00961b129dbf7c076cb6880d3784db036e/pybtex-0.22.1.tar.gz
+URL = https://files.pythonhosted.org/packages/74/73/cbb788404c1b90e7b15f411e60eadeb67965d36a0738775ca031931fedd1/pybtex-0.22.2.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
