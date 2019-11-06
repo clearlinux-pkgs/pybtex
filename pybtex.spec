@@ -4,7 +4,7 @@
 #
 Name     : pybtex
 Version  : 0.22.2
-Release  : 11
+Release  : 14
 URL      : https://files.pythonhosted.org/packages/74/73/cbb788404c1b90e7b15f411e60eadeb67965d36a0738775ca031931fedd1/pybtex-0.22.2.tar.gz
 Source0  : https://files.pythonhosted.org/packages/74/73/cbb788404c1b90e7b15f411e60eadeb67965d36a0738775ca031931fedd1/pybtex-0.22.2.tar.gz
 Summary  : A BibTeX-compatible bibliography processor in Python
@@ -28,8 +28,10 @@ BuildRequires : tox
 BuildRequires : virtualenv
 
 %description
-BibTeX-compatible bibliography processor in Python
 ==================================================
+        
+        Synopsis
+        --------
 
 %package bin
 Summary: bin components for the pybtex package.
@@ -68,24 +70,36 @@ python3 components for the pybtex package.
 
 %prep
 %setup -q -n pybtex-0.22.2
+cd %{_builddir}/pybtex-0.22.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1551110207
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1574108105
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
 %install
+export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pybtex
-cp COPYING %{buildroot}/usr/share/package-licenses/pybtex/COPYING
+cp %{_builddir}/pybtex-0.22.2/COPYING %{buildroot}/usr/share/package-licenses/pybtex/144ddab7f73855648bab2887dd14e753fe1407a5
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
+## Remove excluded files
+rm -f %{buildroot}/usr/lib/python3.8/site-packages/tests/utils.py
+rm -f %{buildroot}/usr/lib/python3.8/site-packages/tests/__pycache__/utils.cpython-38.pyc
+rm -f %{buildroot}/usr/lib/python3.8/site-packages/tests/__init__.py
+rm -f %{buildroot}/usr/lib/python3.8/site-packages/tests/__pycache__/__init__.cpython-38.pyc
 
 %files
 %defattr(-,root,root,-)
@@ -98,14 +112,11 @@ echo ----[ mark ]----
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/pybtex/COPYING
+/usr/share/package-licenses/pybtex/144ddab7f73855648bab2887dd14e753fe1407a5
 
 %files python
 %defattr(-,root,root,-)
 
 %files python3
 %defattr(-,root,root,-)
-%exclude /usr/lib/python3.7/site-packages/tests/__init__.py
-%exclude /usr/lib/python3.7/site-packages/tests/__pycache__/__init__.cpython-37.pyc
-%exclude /usr/lib/python3.7/site-packages/tests/utils.py
 /usr/lib/python3*/*
