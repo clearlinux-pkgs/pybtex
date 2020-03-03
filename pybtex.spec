@@ -4,7 +4,7 @@
 #
 Name     : pybtex
 Version  : 0.22.2
-Release  : 16
+Release  : 17
 URL      : https://files.pythonhosted.org/packages/74/73/cbb788404c1b90e7b15f411e60eadeb67965d36a0738775ca031931fedd1/pybtex-0.22.2.tar.gz
 Source0  : https://files.pythonhosted.org/packages/74/73/cbb788404c1b90e7b15f411e60eadeb67965d36a0738775ca031931fedd1/pybtex-0.22.2.tar.gz
 Summary  : A BibTeX-compatible bibliography processor in Python
@@ -28,10 +28,8 @@ BuildRequires : tox
 BuildRequires : virtualenv
 
 %description
+BibTeX-compatible bibliography processor in Python
 ==================================================
-        
-        Synopsis
-        --------
 
 %package bin
 Summary: bin components for the pybtex package.
@@ -63,6 +61,7 @@ python components for the pybtex package.
 Summary: python3 components for the pybtex package.
 Group: Default
 Requires: python3-core
+Provides: pypi(pybtex)
 
 %description python3
 python3 components for the pybtex package.
@@ -77,7 +76,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1574108105
+export SOURCE_DATE_EPOCH=1583204922
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
