@@ -4,7 +4,7 @@
 #
 Name     : pybtex
 Version  : 0.22.2
-Release  : 18
+Release  : 19
 URL      : https://files.pythonhosted.org/packages/74/73/cbb788404c1b90e7b15f411e60eadeb67965d36a0738775ca031931fedd1/pybtex-0.22.2.tar.gz
 Source0  : https://files.pythonhosted.org/packages/74/73/cbb788404c1b90e7b15f411e60eadeb67965d36a0738775ca031931fedd1/pybtex-0.22.2.tar.gz
 Summary  : A BibTeX-compatible bibliography processor in Python
@@ -28,8 +28,10 @@ BuildRequires : tox
 BuildRequires : virtualenv
 
 %description
-BibTeX-compatible bibliography processor in Python
 ==================================================
+        
+        Synopsis
+        --------
 
 %package bin
 Summary: bin components for the pybtex package.
@@ -62,6 +64,9 @@ Summary: python3 components for the pybtex package.
 Group: Default
 Requires: python3-core
 Provides: pypi(pybtex)
+Requires: pypi(latexcodec)
+Requires: pypi(pyyaml)
+Requires: pypi(six)
 
 %description python3
 python3 components for the pybtex package.
@@ -76,12 +81,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583204922
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1594835705
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
@@ -95,11 +99,9 @@ python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
-## Remove excluded files
-rm -f %{buildroot}/usr/lib/python3.8/site-packages/tests/utils.py
-rm -f %{buildroot}/usr/lib/python3.8/site-packages/tests/__pycache__/utils.cpython-38.pyc
-rm -f %{buildroot}/usr/lib/python3.8/site-packages/tests/__init__.py
-rm -f %{buildroot}/usr/lib/python3.8/site-packages/tests/__pycache__/__init__.cpython-38.pyc
+## install_append content
+rm -rf %{buildroot}/usr/lib/python3*/site-packages/tests
+## install_append end
 
 %files
 %defattr(-,root,root,-)
