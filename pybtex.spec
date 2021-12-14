@@ -4,7 +4,7 @@
 #
 Name     : pybtex
 Version  : 0.24.0
-Release  : 33
+Release  : 34
 URL      : https://files.pythonhosted.org/packages/46/9b/fd39836a6397fb363446d83075a7b9c2cc562f4c449292e039ed36084376/pybtex-0.24.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/46/9b/fd39836a6397fb363446d83075a7b9c2cc562f4c449292e039ed36084376/pybtex-0.24.0.tar.gz
 Summary  : A BibTeX-compatible bibliography processor in Python
